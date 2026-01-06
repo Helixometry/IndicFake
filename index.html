@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <title>Indic-CodecFake: Multilingual Codec-Based Deepfake Speech Samples</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Indic-CodecFake project page with real vs generated audio samples loaded from manifest.js" />
+  <meta name="description" content="Indic-CodecFake project page with real vs generated audio samples loaded inline" />
 
   <style>
     :root{
@@ -20,7 +20,6 @@
     .wrap{max-width:980px; margin:0 auto; padding:28px 18px 56px;}
     h1{font-size:28px; line-height:1.2; margin:0 0 10px; text-align:center;}
 
-    /* "Paper, Dataset, Code" as non-clickable text with tooltip */
     .links{ text-align:center; margin:4px 0 10px; }
     .soon{
       position:relative;
@@ -105,14 +104,13 @@
     <h1>Indic-CodecFake meets SATYAM: Towards Detecting Neural Audio Codec
 Synthesized Speech Deepfakes in Indic Languages</h1>
 
-    <!-- Not links; hover shows tooltip -->
     <div class="links" aria-label="links coming soon">
       <span class="soon" tabindex="0" title="Will be coming soon">Paper</span>,
       <span class="soon" tabindex="0" title="Will be coming soon">Dataset</span>,
       <span class="soon" tabindex="0" title="Will be coming soon">Code</span>
     </div>
 
-    <div class="conf">Submited to ACL 2026</div>
+    <div class="conf">Submitted to ACL 2026</div>
 
     <p class="tldr"><b>TL;DR:</b> We provide multilingual real (GT) and codec-generated speech samples for deepfake detection.</p>
 
@@ -136,15 +134,10 @@ Synthesized Speech Deepfakes in Indic Languages</h1>
           </tr>
         </thead>
         <tbody id="tbody">
-          <tr><td colspan="5" class="small">Loading manifest…</td></tr>
+          <tr><td colspan="5" class="small">Loading samples…</td></tr>
         </tbody>
       </table>
     </div>
-
-    <!-- <p class="small">
-      This page reads <code>window.MANIFEST_RAW</code> from <code>audio/manifest.js</code>.
-      Make sure your audio paths are relative (e.g., <code>audio/clips/...</code>).
-    </p> -->
 
     <h2>Acknowledgement</h2>
     <p class="note">IndicFake is created based on the IndicSUPERB (ai4bharat/Kathbath) dataset</p>
@@ -152,8 +145,33 @@ Synthesized Speech Deepfakes in Indic Languages</h1>
     <p class="small">© Your lab / authors</p>
   </div>
 
-  <!-- Load manifest.js (works on GitHub Pages + works locally without fetch restrictions) -->
-  <script src="audio/manifest.js"></script>
+  <!-- ✅ Inline manifest (NO audio/manifest.js file needed) -->
+  <script>
+    window.MANIFEST_RAW = [
+      {
+        id: "844424933286780-309-m",
+        gt_id: "844424933286780-309-m",
+        codec: "SpeechTokenizer",
+        lang: "kannada",
+        split: "test",
+        protocol: "seen",
+        speaker_id: "844424933286780-309-m",
+        gt_url: "audio/kb_data_clean_m4a_wav/kannada/test_known/audio/844424933286780-309-m.wav",
+        gen_url: "audio/kb_data_clean_m4a_wav/kannada/test_known/audio/844424933286780-309-m.wav"
+      },
+      {
+        id: "1",
+        gt_id: "844424930439764-865-m",
+        codec: "SpeechTokenizer",
+        lang: "bengali",
+        split: "test",
+        protocol: "seen",
+        speaker_id: "844424930439764-865-m",
+        gt_url: "audio/kb_data_clean_m4a_wav/bengali/test_known/audio/844424930439764-865-m.wav",
+        gen_url: "audio/kb_data_clean_m4a_wav/bengali/test_known/audio/844424930439764-865-m.wav"
+      }
+    ];
+  </script>
 
   <script>
     function audioCell(src){
@@ -180,14 +198,14 @@ Synthesized Speech Deepfakes in Indic Languages</h1>
       return td;
     }
 
-    function loadFromManifestJS(){
+    function loadFromManifest(){
       const tbody = document.getElementById("tbody");
 
       if(!Array.isArray(window.MANIFEST_RAW)){
         tbody.innerHTML = `
           <tr><td colspan="5" class="small">
             <b>Manifest not found.</b><br/>
-            Expected <code>audio/manifest.js</code> to define <code>window.MANIFEST_RAW = [...]</code>.
+            Expected <code>window.MANIFEST_RAW = [...]</code> to be defined inline.
           </td></tr>`;
         return;
       }
@@ -201,9 +219,6 @@ Synthesized Speech Deepfakes in Indic Languages</h1>
       }
 
       for(const r of rows){
-        // expected fields in each row:
-        // codec, gt_id (or id), gt_url, gen_url, lang
-        // (extra fields like split/protocol/speaker_id can exist but are not shown)
         const tr = document.createElement("tr");
         tr.appendChild(textCell(r.codec || ""));
         tr.appendChild(textCell(r.gt_id || r.id || ""));
@@ -214,7 +229,7 @@ Synthesized Speech Deepfakes in Indic Languages</h1>
       }
     }
 
-    loadFromManifestJS();
+    loadFromManifest();
   </script>
 </body>
 </html>
