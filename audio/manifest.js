@@ -1,24 +1,24 @@
 window.MANIFEST_RAW = [
   {
-    id: "utt_0001",
-    gt_id: "utt_0001",
+    id: "844424933286780-309-m",
+    gt_id: "844424933286780-309-m",
     codec: "SpeechTokenizer",
-    lang: "hi",
+    lang: "kannada",
     split: "test",
     protocol: "seen",
-    speaker_id: "spk_001",
-    gt_url: "audio/real/hi/utt_0001.wav",
-    gen_url: "audio/generated/hi/SpeechTokenizer/utt_0001.wav"
+    speaker_id: "844424933286780-309-m",
+    gt_url: "audio/kb_data_clean_m4a_wav/kannada/test_known/audio/844424933286780-309-m.wav",
+    gen_url: "audio/kb_data_clean_m4a_wav/kannada/test_known/audio/844424933286780-309-m.wav"
   },
   {
-    id: "utt_0001",
-    gt_id: "utt_0001",
+    id: "1",
+    gt_id: "844424930439764-865-m",
     codec: "SpeechTokenizer",
-    lang: "hi",
+    lang: "bengali",
     split: "test",
     protocol: "seen",
-    speaker_id: "spk_001",
-    gt_url: "audio/real/hi/utt_0001.wav",
-    gen_url: "audio/generated/hi/SpeechTokenizer/utt_0001.wav"
+    speaker_id: "844424930439764-865-m",
+    gt_url: "audio/kb_data_clean_m4a_wav/bengali/test_known/audio/844424930439764-865-m.wav",
+    gen_url: "audio/kb_data_clean_m4a_wav/bengali/test_known/audio/844424930439764-865-m.wav"
   }
 ];
