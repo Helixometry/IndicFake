@@ -1,0 +1,23 @@
+model:
+  semantic_dim: 768
+  prosodic_dim: 512
+  hidden_dim: 512
+  dropout: 0.3
+
+training:
+  batch_size: 32
+  epochs: 50
+  learning_rate: 1e-4
+  weight_decay: 1e-2
+
+data:
+  sample_rate: 16000
+  languages:
+    - Hindi
+    - Tamil
+    - Telugu
+    - Kannada
+    - Malayalam
+
+device: cuda
+seed: 42
